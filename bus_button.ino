@@ -17,7 +17,10 @@ void setup() {
 void loop() {
   if (read_button_status()) {
     count ++;
-    if (count % 11 == 0) {
+    if (count % 21 == 0) {
+      play_phrase4();
+    }
+    else if (count % 11 == 0) {
       play_phrase3();
     }
     else if (count % 7 == 0) {
@@ -137,4 +140,25 @@ void play_phrase3() {
   delay(2000);
 }
 
+void play_phrase4() {
+  int t = 300;
+  digitalWrite(pin_led, HIGH);
+  play_beep(NOTE_F5 , t);
+  play_beep(NOTE_A5 , t);
+  play_beep(NOTE_C6 , t);
+  play_beep(NOTE_F6 , t*4);
+  delay(t);
 
+  play_beep(NOTE_A5 , t);
+  play_beep(NOTE_AS5, t);
+  play_beep(NOTE_AS5, t);
+  play_beep(NOTE_FS5, t*4);
+  delay(t);
+
+  for (int i = 0; i < 50; ++i) {
+    digitalWrite(pin_led, LOW);
+    delay(random(30, 200));
+    digitalWrite(pin_led, HIGH);
+    delay(random(30, 200));
+  }  
+}
